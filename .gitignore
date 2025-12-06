@@ -1,0 +1,102 @@
+# Emacs
+*~
+\#*\#
+*.elc
+auto-save-list
+tramp
+.\#*
+.org-id-locations
+*.rel
+
+# Undo-tree
+*.~undo-tree
+
+# Network security
+network-security.data
+
+# Backups
+backups/
+auto-saves/
+
+# Packages
+elpa/
+eln-cache/
+quelpa/
+straight/
+
+# Project files
+projectile-bookmarks.eld
+projectile.cache
+recentf
+places
+smex-items
+
+# LSP
+.lsp-session-*
+.lsp-cache/
+lsp-cache/
+
+# DAP
+.dap-breakpoints
+
+# Directory locals
+.dir-locals.el
+
+# Personal customization
+custom.el
+custom-file.el
+
+# Org
+org-roam.db
+org-clock-save.el
+
+# Cache
+ac-comphist.dat
+ido.last
+bookmarks
+transient/
+
+# Compile
+*.eln
+*.elc
+
+# Session
+session.*
+.session
+.emacs.desktop
+.emacs.desktop.lock
+
+# Abbrev
+abbrev_defs
+
+# quelpa
+quelpa/
+
+# flycheck
+flycheck_*.el
+
+# company statistics
+company-statistics-cache.el
+
+# Tree-sitter
+tree-sitter/
+
+# Request
+request/
+
+# URL
+url/
+
+# Anaconda mode
+anaconda-mode/
+
+# EIN (Jupyter)
+ein/
+
+# Eshell
+eshell/
+
+# Temporary files
+*.tmp
+tmp/
+temp/
