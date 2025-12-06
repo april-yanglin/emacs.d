@@ -9,26 +9,33 @@
 ;; Add lisp directory to load path
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 
-;; Package management
-(require 'package)
-(setq package-archives
-      '(("melpa" . "https://melpa.org/packages/")
-        ("elpa" . "https://elpa.gnu.org/packages/")
-        ("nongnu" . "https://elpa.nongnu.org/nongnu/")))
+;; Bootstrap straight.el
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 6))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-(package-initialize)
+;; Configure straight.el
+(setq straight-use-package-by-default t
+      straight-vc-git-default-clone-depth 1
+      straight-check-for-modifications '(check-on-save find-when-checking))
 
-;; Bootstrap use-package
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+;; Install use-package via straight
+(straight-use-package 'use-package)
 
-(eval-when-compile
-  (require 'use-package))
-
-(setq use-package-always-ensure t
+;; Configure use-package
+(setq use-package-always-defer t
       use-package-expand-minimally t
-      use-package-compute-statistics t)
+      use-package-compute-statistics t
+      use-package-enable-imenu-support t)
 
 ;; Load configuration modules
 (require 'base-config)

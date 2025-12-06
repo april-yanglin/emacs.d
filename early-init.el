@@ -6,7 +6,7 @@
 
 ;;; Code:
 
-;; Disable package.el in favor of setting it up in init.el
+;; Disable package.el in favor of straight.el
 (setq package-enable-at-startup nil)
 
 ;; Increase GC threshold during startup for better performance

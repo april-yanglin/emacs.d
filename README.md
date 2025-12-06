@@ -24,6 +24,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 - **Other**: JSON, XML, Protocol Buffers, Avro, Thrift, HDF5, Arrow/Feather
 
 ### General Features
+- **Package Management**: straight.el for reproducible, version-controlled packages
 - **Evil Mode**: Vim emulation with space as leader key and comma as local leader
 - Modern UI with doom-themes and doom-modeline
 - LSP integration for intelligent code completion
@@ -71,10 +72,12 @@ A comprehensive Emacs configuration for modern software development and writing.
    ```
 
 3. On first launch, Emacs will automatically:
-   - Install `use-package`
-   - Download and install all packages from MELPA
+   - Bootstrap `straight.el` (declarative package manager)
+   - Clone and build all required packages
    - Compile configuration files
-   - This may take a few minutes
+   - This may take 5-10 minutes on first run
+
+**Note**: This configuration uses [straight.el](https://github.com/radian-software/straight.el) instead of package.el for reproducible, version-controlled package management.
 
 ### Language Server Protocol (LSP) Setup
 
@@ -372,18 +375,90 @@ Comment out unwanted modules in `init.el`:
 
 **Note**: If you disable Evil mode, you'll use standard Emacs keybindings instead. Most functionality remains accessible through the default `C-c` and `M-x` bindings.
 
+### Package Management with straight.el
+
+This configuration uses **straight.el** instead of package.el for better reproducibility and version control.
+
+#### Installing Additional Packages
+
+Add packages to your configuration files using `use-package`:
+
+```elisp
+(use-package package-name
+  :config
+  (setq package-option value))
+```
+
+Since `straight-use-package-by-default` is enabled, all `use-package` declarations automatically use straight.el.
+
+#### Updating Packages
+
+Update all packages:
+```elisp
+M-x straight-pull-all         ; Pull latest changes
+M-x straight-rebuild-all      ; Rebuild packages
+```
+
+Update a single package:
+```elisp
+M-x straight-pull-package RET package-name
+M-x straight-rebuild-package RET package-name
+```
+
+#### Freezing Package Versions
+
+Create a version lockfile for reproducibility:
+```elisp
+M-x straight-freeze-versions  ; Creates versions lockfile
+```
+
+This creates `~/.emacs.d/straight/versions/default.el` which you can commit to version control.
+
+#### Advantages of straight.el
+
+- **Reproducible**: Lock package versions with version files
+- **Git-based**: Directly clone from Git repositories
+- **Version control**: Easy to track package changes
+- **Flexible**: Install from GitHub, GitLab, or local repositories
+- **No waiting**: Packages are built on-demand, not pre-compiled
+
+#### Installing from GitHub
+
+```elisp
+(use-package some-package
+  :straight (:host github :repo "user/repo"))
+```
+
+#### Installing from Local Directory
+
+```elisp
+(use-package my-package
+  :straight (:local-repo "~/path/to/package"))
+```
+
 ## Troubleshooting
 
 ### Packages Not Installing
 
-1. Refresh package contents:
+1. Rebuild a specific package:
    ```elisp
-   M-x package-refresh-contents
+   M-x straight-rebuild-package RET package-name
    ```
 
-2. Reinstall packages:
+2. Rebuild all packages:
    ```elisp
-   M-x package-reinstall RET package-name
+   M-x straight-rebuild-all
+   ```
+
+3. Check straight.el build logs:
+   ```elisp
+   M-x straight-get-recipe RET package-name
+   ```
+
+4. Clear build cache and rebuild:
+   ```elisp
+   M-x straight-prune-build
+   M-x straight-rebuild-all
    ```
 
 ### LSP Not Working
