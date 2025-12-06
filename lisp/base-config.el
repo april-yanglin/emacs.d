@@ -87,13 +87,6 @@
          ("M-g g" . consult-goto-line)
          ("M-g M-g" . consult-goto-line)))
 
-;; Which-key - show available keybindings
-(use-package which-key
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 0.5)
-  (which-key-mode))
-
 ;; Better help
 (use-package helpful
   :bind (("C-h f" . helpful-callable)

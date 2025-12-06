@@ -32,6 +32,8 @@
 
 ;; Load configuration modules
 (require 'base-config)
+(require 'evil-config)            ; Evil mode with space leader
+(require 'evil-local-leader)      ; Major-mode specific bindings with comma
 (require 'ui-config)
 (require 'programming-config)
 (require 'lang-python)

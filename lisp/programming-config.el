@@ -119,9 +119,9 @@
 (use-package yasnippet-snippets
   :after yasnippet)
 
-;; Comment/uncomment easily
-(use-package evil-nerd-commenter
-  :bind (("M-;" . evilnc-comment-or-uncomment-lines)))
+;; Comment/uncomment easily (evil-commentary is configured in evil-config.el)
+;; Additional binding for non-evil users
+(global-set-key (kbd "M-;") 'comment-line)
 
 ;; Smart parentheses
 (use-package smartparens

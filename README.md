@@ -24,6 +24,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 - **Other**: JSON, XML, Protocol Buffers, Avro, Thrift, HDF5, Arrow/Feather
 
 ### General Features
+- **Evil Mode**: Vim emulation with space as leader key and comma as local leader
 - Modern UI with doom-themes and doom-modeline
 - LSP integration for intelligent code completion
 - Git integration (magit, git-gutter, diff-hl)
@@ -32,7 +33,8 @@ A comprehensive Emacs configuration for modern software development and writing.
 - Syntax checking (flycheck)
 - Code snippets (yasnippet)
 - Tree-sitter for better syntax highlighting
-- Multiple cursors
+- File explorer (treemacs)
+- Terminal emulation (vterm)
 - Spell checking (flyspell)
 
 ## Installation
@@ -145,6 +147,8 @@ sudo apt install pgformatter  # or brew install pgformatter
 ├── init.el                    # Main entry point
 ├── lisp/                      # Configuration modules
 │   ├── base-config.el         # Basic settings
+│   ├── evil-config.el         # Evil mode (space leader)
+│   ├── evil-local-leader.el   # Major-mode bindings (comma leader)
 │   ├── ui-config.el           # UI and theming
 │   ├── programming-config.el  # General programming setup
 │   ├── lang-python.el         # Python configuration
@@ -161,44 +165,173 @@ sudo apt install pgformatter  # or brew install pgformatter
 
 ## Key Bindings
 
-### General
-- `C-x g` - Magit status
-- `C-s` - Search (consult-line)
-- `C-c p` - Projectile commands
-- `C-c f` - Format buffer
-- `M-;` - Comment/uncomment
+This configuration uses **Evil mode** (Vim emulation) with:
+- **Space** (`SPC`) as the global leader key
+- **Comma** (`,`) as the local leader for major-mode specific commands
+- **M-SPC** and **M-,** for insert/emacs mode
 
-### LSP (when in a programming buffer)
-- `C-c l` - LSP command prefix
-- `M-.` - Go to definition
-- `M-,` - Go back
-- `M-?` - Find references
-- `C-c l r r` - Rename symbol
-- `C-c l a a` - Code actions
+Press `SPC` and wait to see available keybindings (powered by which-key).
 
-### Org Mode
-- `C-c l` - Store link
-- `C-c a` - Agenda
-- `C-c c` - Capture
-- `C-c C-c` - Execute code block
-- `C-c n f` - Org-roam find node
-- `C-c n i` - Org-roam insert node
+### Evil Mode Basics
 
-### Python
-- `C-c t t` - Run pytest
+#### Normal Mode
+- `hjkl` - Move cursor (left, down, up, right)
+- `w/b` - Word forward/backward
+- `0/$` - Line start/end
+- `gg/G` - File start/end
+- `i/a` - Insert before/after cursor
+- `o/O` - New line below/above
+- `v/V` - Visual/Visual line mode
+- `d` - Delete (with motion)
+- `c` - Change (with motion)
+- `y` - Yank/copy (with motion)
+- `p/P` - Paste after/before
+- `u` - Undo
+- `Ctrl-r` - Redo
+- `gcc` - Comment line (evil-commentary)
+- `gc{motion}` - Comment motion
 
-### Go
-- `C-c t t` - Run current test
-- `C-c t f` - Test current file
+### Global Leader (Space)
 
-### Docker
-- `C-c d` - Docker management
-- `C-c C-b` - Build Docker image (in Dockerfile)
+#### Files (`SPC f`)
+- `SPC f f` - Find file
+- `SPC f r` - Recent files
+- `SPC f s` - Save file
+- `SPC f d` - Delete file
+- `SPC f D` - Open dired
 
-### Multiple Cursors
-- `C->` - Mark next like this
-- `C-<` - Mark previous like this
-- `C-c C-<` - Mark all like this
+#### Buffers (`SPC b`)
+- `SPC b b` - Switch buffer
+- `SPC b d` - Kill buffer
+- `SPC b n/p` - Next/previous buffer
+- `SPC b s` - Save buffer
+
+#### Windows (`SPC w`)
+- `SPC w s` - Split horizontally
+- `SPC w v` - Split vertically
+- `SPC w d` - Delete window
+- `SPC w h/j/k/l` - Navigate windows (vim-style)
+- `SPC w m` - Maximize window
+
+#### Search (`SPC s`)
+- `SPC s s` - Search buffer (consult-line)
+- `SPC s p` - Search project (ripgrep)
+- `SPC s i` - Search imenu
+- `SPC s o` - Search outline
+
+#### Project (`SPC p`)
+- `SPC p p` - Switch project
+- `SPC p f` - Find file in project
+- `SPC p s` - Search in project
+- `SPC p c` - Compile project
+- `SPC p t` - Test project
+
+#### Git (`SPC g`)
+- `SPC g g` - Magit status
+- `SPC g d` - Diff unstaged
+- `SPC g c` - Commit
+- `SPC g p/P` - Push/Pull
+- `SPC g b` - Branch
+- `SPC g l` - Log
+- `SPC g B` - Blame
+
+#### LSP (`SPC l`)
+- `SPC l r` - Rename symbol
+- `SPC l a` - Code actions
+- `SPC l f` - Format buffer
+- `SPC l d` - Find definition
+- `SPC l R` - Find references
+- `SPC l i` - Find implementation
+- `SPC l S` - Restart LSP workspace
+
+#### Code (`SPC c`)
+- `SPC c c` - Compile
+- `SPC c f` - Format buffer
+- `SPC c r` - Comment/uncomment
+- `SPC c x` - Execute code (quickrun)
+
+#### Toggle (`SPC t`)
+- `SPC t n` - Line numbers
+- `SPC t w` - Whitespace mode
+- `SPC t t` - Truncate lines
+- `SPC t f` - Fullscreen
+
+#### Open (`SPC o`)
+- `SPC o t` - Terminal (vterm)
+- `SPC o e` - Eshell
+- `SPC o d` - Dired
+- `SPC o p` - Treemacs
+
+#### Help (`SPC h`)
+- `SPC h f` - Describe function
+- `SPC h v` - Describe variable
+- `SPC h k` - Describe key
+- `SPC h m` - Describe mode
+
+### Local Leader (Comma) - Major Mode Specific
+
+#### Python (`,`)
+- `, c v` - Activate virtualenv
+- `, c a` - Activate conda env
+- `, t t` - Run pytest
+- `, r b` - Black format
+- `, r i` - Isort imports
+- `, s s` - Start Python shell
+
+#### Go (`,`)
+- `, t t` - Test current
+- `, t f` - Test file
+- `, t p` - Test project
+- `, r i` - Add import
+- `, x r` - Run
+- `, x b` - Build
+
+#### Java (`,`)
+- `, t t` - Test method
+- `, t c` - Test class
+- `, r o` - Organize imports
+- `, d d` - Debug
+- `, m c` - Maven clean
+- `, m t` - Maven test
+
+#### C/C++ (`,`)
+- `, c c` - Compile
+- `, f f` - Format with clang-format
+- `, d d` - Start GDB
+- `, d a` - Disassemble
+
+#### JavaScript/TypeScript (`,`)
+- `, r r` - Rename variable
+- `, r e` - Extract function
+- `, f f` - Prettier format
+- `, n r` - NPM run script
+- `, n i` - NPM install
+
+#### Org Mode (`,`)
+- `, t t` - Todo
+- `, d d` - Deadline
+- `, d s` - Schedule
+- `, e e` - Export dispatch
+- `, x x` - Execute code block
+- `, l l` - Insert link
+- `, c i/o` - Clock in/out
+
+#### Markdown (`,`)
+- `, p` - Preview
+- `, i l` - Insert link
+- `, i i` - Insert image
+- `, t t` - Generate TOC
+
+#### Docker (`,`)
+- `, b` - Build image
+- `, u` - Docker-compose up
+- `, d` - Docker-compose down
+
+#### SQL (`,`)
+- `, s b` - Send buffer
+- `, s r` - Send region
+- `, c` - Connect
+- `, f` - Format
 
 ## Customization
 
@@ -229,9 +362,15 @@ Then add to `init.el`:
 Comment out unwanted modules in `init.el`:
 
 ```elisp
+;; Disable Evil mode (if you prefer Emacs keybindings)
+;; (require 'evil-config)
+;; (require 'evil-local-leader)
+
 ;; Don't load Java support
 ;; (require 'lang-java)
 ```
+
+**Note**: If you disable Evil mode, you'll use standard Emacs keybindings instead. Most functionality remains accessible through the default `C-c` and `M-x` bindings.
 
 ## Troubleshooting
 
