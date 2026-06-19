@@ -30,7 +30,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 - LSP integration for intelligent code completion
 - Git integration (magit, git-gutter, diff-hl)
 - Project management (projectile)
-- Smart completion (company, vertico, orderless)
+- Smart completion (corfu, cape, vertico, orderless)
 - Syntax checking (flycheck)
 - Code snippets (yasnippet)
 - Tree-sitter for better syntax highlighting

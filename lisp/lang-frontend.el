@@ -139,10 +139,15 @@
 (use-package restclient
   :mode ("\\.http\\'" . restclient-mode))
 
+;; Bridge the company-restclient backend into Corfu via Cape
 (use-package company-restclient
-  :after (company restclient)
+  :after restclient
+  :hook (restclient-mode . my/restclient-setup-capf)
   :config
-  (add-to-list 'company-backends 'company-restclient))
+  (defun my/restclient-setup-capf ()
+    "Add restclient completion to `completion-at-point-functions'."
+    (add-hook 'completion-at-point-functions
+              (cape-company-to-capf #'company-restclient) nil t)))
 
 ;; GraphQL mode
 (use-package graphql-mode

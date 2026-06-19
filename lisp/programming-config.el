@@ -82,25 +82,42 @@
 (use-package tree-sitter-langs
   :after tree-sitter)
 
-;; Company mode for completion
-(use-package company
-  :diminish company-mode
-  :hook (after-init . global-company-mode)
+;; Corfu - in-buffer completion UI (pairs with Vertico/Orderless)
+(use-package corfu
+  :init
+  (global-corfu-mode)
+  :custom
+  (corfu-cycle t)                  ; Cycle through candidates
+  (corfu-auto t)                   ; Enable auto completion
+  (corfu-auto-prefix 2)            ; Complete after 2 chars
+  (corfu-auto-delay 0.1)           ; Small delay to avoid jank
+  (corfu-quit-no-match 'separator) ; Quit if no match (unless separator)
+  (corfu-preselect 'prompt)        ; Preselect the prompt
+  (corfu-popupinfo-delay '(0.5 . 0.2))
+  :bind (:map corfu-map
+              ("<tab>" . corfu-complete)
+              ("TAB" . corfu-complete)
+              ("C-n" . corfu-next)
+              ("C-p" . corfu-previous))
   :config
-  (setq company-minimum-prefix-length 1
-        company-idle-delay 0.0
-        company-show-numbers t
-        company-tooltip-align-annotations t
-        company-selection-wrap-around t
-        company-transformers '(company-sort-by-occurrence))
-  :bind (:map company-active-map
-              ("<tab>" . company-complete-selection)
-              ("TAB" . company-complete-selection)
-              ("C-n" . company-select-next)
-              ("C-p" . company-select-previous)))
+  ;; Show documentation popup next to candidates
+  (corfu-popupinfo-mode 1))
 
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+;; Show nice icons in the Corfu popup
+(use-package kind-icon
+  :after corfu
+  :custom
+  (kind-icon-default-face 'corfu-default)
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
+;; Cape - extra completion-at-point backends for Corfu
+(use-package cape
+  :init
+  ;; General-purpose backends available everywhere
+  (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+  (add-to-list 'completion-at-point-functions #'cape-file)
+  (add-to-list 'completion-at-point-functions #'cape-keyword))
 
 ;; Flycheck for syntax checking
 (use-package flycheck

@@ -70,10 +70,8 @@
 ;;   :config
 ;;   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
 
-;; (use-package company-irony
-;;   :after (company irony)
-;;   :config
-;;   (add-to-list 'company-backends 'company-irony))
+;; Note: completion is handled by LSP (clangd) through Corfu/Cape;
+;; irony/company-irony are no longer needed.
 
 ;; Disaster - see assembly
 (use-package disaster
