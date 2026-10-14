@@ -7,6 +7,7 @@
 
 ;; Project management
 (use-package projectile
+  :demand t                             ; track recent projects from startup
   :diminish projectile-mode
   :config
   (projectile-mode +1)

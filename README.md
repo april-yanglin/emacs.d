@@ -34,7 +34,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 - Syntax checking (flycheck)
 - Code snippets (yasnippet)
 - Tree-sitter for better syntax highlighting
-- File explorer (treemacs)
+- Project sidebar: file tree (treemacs) + recent projects panel
 - Terminal emulation (vterm)
 - Spell checking (flyspell)
 
@@ -154,6 +154,7 @@ sudo apt install pgformatter  # or brew install pgformatter
 │   ├── evil-local-leader.el   # Major-mode bindings (comma leader)
 │   ├── ui-config.el           # UI and theming
 │   ├── programming-config.el  # General programming setup
+│   ├── project-sidebar.el     # Recent projects + project tree sidebar
 │   ├── lang-python.el         # Python configuration
 │   ├── lang-go.el             # Go configuration
 │   ├── lang-java.el           # Java configuration
@@ -224,6 +225,10 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 
 #### Project (`SPC p`)
 - `SPC p p` - Switch project
+- `SPC p o` - Open a recent project (most recently used first)
+- `SPC p l` - Recent projects panel
+- `SPC p e` - Toggle project sidebar (file tree + recent projects)
+- `SPC p E` - Reveal current file in the project tree
 - `SPC p f` - Find file in project
 - `SPC p s` - Search in project
 - `SPC p c` - Compile project
@@ -263,7 +268,20 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 - `SPC o t` - Terminal (vterm)
 - `SPC o e` - Eshell
 - `SPC o d` - Dired
-- `SPC o p` - Treemacs
+- `SPC o p` / `F8` - Project sidebar (file tree + recent projects)
+- `SPC o P` - Treemacs (plain)
+
+### Project Sidebar
+
+`SPC o p` (or `F8`) opens a VS Code style sidebar on the left:
+
+- **Top:** a treemacs file tree showing only the current buffer's project.
+  It follows you as you move between projects.
+- **Bottom:** a *Recent Projects* panel listing projectile's known projects,
+  most recently used first (`●` marks the current one).
+  - `RET` / `o` / click - switch to project
+  - `d` - forget project, `a` - add a directory as a project
+  - `gr` - refresh, `q` - close the sidebar
 
 #### Help (`SPC h`)
 - `SPC h f` - Describe function

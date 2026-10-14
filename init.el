@@ -43,6 +43,7 @@
 (require 'evil-local-leader)      ; Major-mode specific bindings with comma
 (require 'ui-config)
 (require 'programming-config)
+(require 'project-sidebar)         ; Recent projects + project tree sidebar
 (require 'lang-python)
 (require 'lang-go)
 (require 'lang-java)

@@ -174,6 +174,10 @@
     ;; Project (Projectile)
     "p" '(:ignore t :which-key "project")
     "pp" '(projectile-switch-project :which-key "switch project")
+    "po" '(my/project-open-recent :which-key "recent projects")
+    "pl" '(my/recent-projects-panel :which-key "recent projects panel")
+    "pe" '(my/project-sidebar-toggle :which-key "toggle sidebar")
+    "pE" '(my/project-sidebar-reveal-file :which-key "reveal file in tree")
     "pf" '(projectile-find-file :which-key "find file")
     "pr" '(projectile-recentf :which-key "recent files")
     "pb" '(projectile-switch-to-buffer :which-key "switch buffer")
@@ -247,7 +251,8 @@
     "ot" '(vterm :which-key "terminal")
     "oe" '(eshell :which-key "eshell")
     "od" '(dired :which-key "dired")
-    "op" '(treemacs :which-key "treemacs")
+    "op" '(my/project-sidebar-toggle :which-key "project sidebar")
+    "oP" '(treemacs :which-key "treemacs")
 
     ;; Insert
     "i" '(:ignore t :which-key "insert")
@@ -294,17 +299,25 @@
 
 ;; Treemacs file explorer
 (use-package treemacs
-  :commands treemacs
+  :commands (treemacs treemacs-select-window treemacs-find-file)
   :config
   (setq treemacs-width 35
-        treemacs-follow-mode t
-        treemacs-filewatch-mode t))
+        treemacs-is-never-other-window t
+        treemacs-show-hidden-files t)
+  ;; These are minor modes: they must be called, not `setq'd.
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (treemacs-git-mode 'simple)
+  ;; Keep the tree on the project of the current buffer.
+  (treemacs-project-follow-mode t))
 
 (use-package treemacs-evil
-  :after (treemacs evil))
+  :after (treemacs evil)
+  :demand t)
 
 (use-package treemacs-projectile
-  :after (treemacs projectile))
+  :after (treemacs projectile)
+  :demand t)
 
 (use-package treemacs-magit
   :after (treemacs magit))
