@@ -68,19 +68,16 @@
   :defer t)
 
 (use-package emacsql-sqlite
+  :straight nil                         ; ships with emacsql
   :after emacsql)
 
 ;; Clickhouse SQL mode
-(use-package clickhouse-mode
-  :mode "\\.clickhouse\\'")
+;; (no clickhouse-mode package exists; use sql-mode)
+(add-to-list 'auto-mode-alist '("\\.clickhouse\\'" . sql-mode))
 
 ;; Protocol Buffers
 (use-package protobuf-mode
   :mode "\\.proto\\'")
-
-;; Apache Avro IDL
-(use-package avro-mode
-  :mode "\\.avdl\\'")
 
 ;; XML mode
 (use-package nxml-mode

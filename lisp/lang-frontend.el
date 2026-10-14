@@ -108,10 +108,6 @@
 (use-package less-css-mode
   :mode "\\.less\\'")
 
-;; Styled components
-(use-package styled-components-mode
-  :hook (styled-components-mode . lsp-deferred))
-
 ;; Prettier for code formatting
 (use-package prettier-js
   :hook ((js2-mode . prettier-js-mode)
@@ -119,12 +115,11 @@
          (web-mode . prettier-js-mode)
          (json-mode . prettier-js-mode)))
 
-;; ESLint integration
-(use-package flycheck-eslint
-  :after flycheck
-  :hook ((js2-mode . (lambda ()
-                       (when (executable-find "eslint")
-                         (flycheck-select-checker 'javascript-eslint))))))
+;; ESLint (the javascript-eslint checker ships with flycheck)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (when (and (executable-find "eslint") (fboundp 'flycheck-select-checker))
+              (flycheck-select-checker 'javascript-eslint))))
 
 ;; npm mode for package.json integration
 (use-package npm-mode
