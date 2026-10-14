@@ -15,7 +15,9 @@
   :config
   (setq org-directory "~/org"
         org-default-notes-file (concat org-directory "/notes.org")
-        org-agenda-files (list org-directory)
+        ;; Only if it exists: a missing agenda dir makes the dashboard
+        ;; agenda widget block startup with a "Non-existent agenda file" prompt.
+        org-agenda-files (when (file-directory-p org-directory) (list org-directory))
         org-log-done 'time
         org-log-into-drawer t
         org-startup-indented t

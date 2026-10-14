@@ -12,6 +12,7 @@
 
 ;; Theme
 (use-package doom-themes
+  :demand t
   :config
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
@@ -48,10 +49,12 @@
 
 ;; Dashboard
 (use-package dashboard
+  :demand t
   :config
   (setq dashboard-banner-logo-title "Welcome to Emacs"
         dashboard-startup-banner 'official
         dashboard-center-content t
+        dashboard-projects-backend 'projectile ; default is project.el
         dashboard-items '((recents  . 5)
                           (bookmarks . 5)
                           (projects . 5)

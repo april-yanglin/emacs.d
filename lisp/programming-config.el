@@ -150,6 +150,7 @@
 
 ;; Editorconfig support
 (use-package editorconfig
+  :demand t
   :diminish editorconfig-mode
   :config
   (editorconfig-mode 1))

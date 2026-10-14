@@ -57,6 +57,7 @@
 
 ;; Recentf - remember recent files
 (use-package recentf
+  :demand t
   :straight nil
   :config
   (setq recentf-max-saved-items 500

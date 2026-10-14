@@ -21,6 +21,7 @@
 
 ;; Virtual environment management
 (use-package pyvenv
+  :demand t
   :config
   (setq pyvenv-mode-line-indicator '(pyvenv-virtual-env-name ("[venv:" pyvenv-virtual-env-name "] ")))
   (add-hook 'python-mode-hook 'pyvenv-mode))

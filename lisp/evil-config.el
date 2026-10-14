@@ -7,6 +7,7 @@
 
 ;; Evil mode - Vim emulation
 (use-package evil
+  :demand t
   :init
   (setq evil-want-integration t
         evil-want-keybinding nil
@@ -81,6 +82,7 @@
 
 ;; General - convenient key binding
 (use-package general
+  :demand t
   :config
   (general-evil-setup t)
 
@@ -259,6 +261,7 @@
 
 ;; Which-key for showing available keybindings
 (use-package which-key
+  :demand t
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 0.3
