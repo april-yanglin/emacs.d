@@ -33,6 +33,7 @@
 (declare-function projectile-switch-project-by-name "projectile")
 (declare-function projectile-remove-known-project "projectile")
 (declare-function projectile-add-known-project "projectile")
+(declare-function projectile-known-projects "projectile")
 (declare-function treemacs "treemacs")
 (declare-function treemacs-current-visibility "treemacs")
 (declare-function treemacs-get-local-window "treemacs")
@@ -78,7 +79,11 @@
   (require 'projectile)
   (seq-filter (lambda (dir)
                 (or (file-remote-p dir) (file-directory-p dir)))
-              projectile-known-projects))
+              ;; The function loads the list from disk on first use; the
+              ;; variable stays nil until then.
+              (if (fboundp 'projectile-known-projects)
+                  (projectile-known-projects)
+                projectile-known-projects)))
 
 (defun my/project--switch (root)
   "Switch to project ROOT from the main editing window."
