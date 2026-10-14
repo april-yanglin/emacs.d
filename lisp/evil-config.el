@@ -175,8 +175,8 @@
     "sg" '(consult-grep :which-key "grep")
     "sf" '(consult-find :which-key "find file")
 
-    ;; Project (Projectile) - hydra menu, see `my/hydra-project' in project-sidebar.el
-    "p" '(my/hydra-project/body :which-key "project")
+    ;; Project (Projectile) - hydra menu, see `hydra-project' in project-sidebar.el
+    "p" '(hydra-project/body :which-key "project")
 
     ;; Git (Magit)
     "g" '(:ignore t :which-key "git")

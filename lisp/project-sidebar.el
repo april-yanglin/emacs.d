@@ -25,7 +25,8 @@
 (require 'seq)
 
 (use-package hydra :demand t)
-(eval-when-compile (require 'hydra nil t))
+(use-package pretty-hydra :demand t)
+(eval-when-compile (require 'pretty-hydra nil t))
 
 (declare-function projectile-project-root "projectile")
 (declare-function projectile-project-name "projectile")
@@ -330,23 +331,25 @@
 
 ;;;; Hydra menu (SPC p)
 
-(defhydra my/hydra-project (:exit t :hint nil :foreign-keys warn)
-  ("p" projectile-switch-project "switch project" :column "Project")
-  ("o" my/project-open-recent "recent projects")
-  ("f" projectile-find-file "find file")
-  ("r" projectile-recentf "recent file")
-  ("b" projectile-switch-to-buffer "switch buffer")
-  ("k" projectile-kill-buffers "kill buffers")
-  ("s" projectile-ripgrep "search" :column "Search/Build")
-  ("R" projectile-replace "replace")
-  ("c" projectile-compile-project "compile")
-  ("T" projectile-test-project "test")
-  ("I" projectile-invalidate-cache "invalidate cache")
-  ("t" my/project-sidebar-toggle "toggle sidebar" :column "Tree")
-  ("e" my/project-sidebar-reveal-file "reveal file")
-  ("l" my/recent-projects-panel "recent panel")
-  ("n" treemacs "treemacs")
-  ("q" nil "quit"))
+(pretty-hydra-define hydra-project (:color blue :hint nil :quit-key "q")
+  ("Project"
+   (("p" projectile-switch-project "switch project")
+    ("o" my/project-open-recent "recent projects")
+    ("f" projectile-find-file "find file")
+    ("r" projectile-recentf "recent file")
+    ("b" projectile-switch-to-buffer "switch buffer")
+    ("k" projectile-kill-buffers "kill buffers"))
+   "Search/Build"
+   (("s" projectile-ripgrep "search")
+    ("R" projectile-replace "replace")
+    ("c" projectile-compile-project "compile")
+    ("T" projectile-test-project "test")
+    ("I" projectile-invalidate-cache "invalidate cache"))
+   "Tree"
+   (("t" my/project-sidebar-toggle "toggle tree")
+    ("e" my/project-sidebar-reveal-file "reveal file")
+    ("l" my/recent-projects-panel "recent projects panel")
+    ("n" treemacs "treemacs"))))
 
 ;;;; Wiring
 

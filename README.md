@@ -226,15 +226,15 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 - `SPC s o` - Search outline
 
 #### Project (`SPC p`)
-`SPC p` opens a hydra menu:
+`SPC p` opens a `pretty-hydra` menu (`hydra-project`, `q` quits):
 
 | Project | Search/Build | Tree |
 |---|---|---|
-| `p` switch project | `s` search | `t` toggle sidebar |
+| `p` switch project | `s` search | `t` toggle tree (+ recent projects) |
 | `o` recent projects (MRU) | `R` replace | `e` reveal file in tree |
 | `f` find file | `c` compile | `l` recent projects panel |
 | `r` recent file | `T` test | `n` treemacs |
-| `b` switch buffer | `I` invalidate cache | `q` quit |
+| `b` switch buffer | `I` invalidate cache | |
 | `k` kill buffers | | |
 
 #### Git (`SPC g`)
