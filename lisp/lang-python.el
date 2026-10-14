@@ -55,14 +55,6 @@
 (use-package live-py-mode
   :commands live-py-mode)
 
-;; Conda support
-(use-package conda
-  :config
-  (setq conda-anaconda-home (expand-file-name "~/anaconda3"))
-  (conda-env-initialize-interactive-shells)
-  (conda-env-initialize-eshell)
-  (conda-env-autoactivate-mode t))
-
 ;; Python docstring
 (use-package sphinx-doc
   :hook (python-mode . sphinx-doc-mode))

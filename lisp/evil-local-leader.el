@@ -16,10 +16,7 @@
 
 (python-local-leader
   "" '(:ignore t :which-key "python")
-  "c" '(:ignore t :which-key "conda/venv")
-  "ca" '(conda-env-activate :which-key "activate conda env")
-  "cd" '(conda-env-deactivate :which-key "deactivate conda env")
-  "cl" '(conda-env-list :which-key "list conda envs")
+  "c" '(:ignore t :which-key "venv")
   "cv" '(pyvenv-workon :which-key "workon virtualenv")
   "cp" '(poetry-venv-workon :which-key "poetry venv")
 

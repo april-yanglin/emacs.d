@@ -5,7 +5,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 ## Features
 
 ### Programming Languages
-- **Python**: LSP support (pyright), virtual environments (pyvenv, conda, poetry), testing (pytest), formatting (black, isort), Jupyter notebooks
+- **Python**: LSP support (pyright), virtual environments (pyvenv, poetry), testing (pytest), formatting (black, isort), Jupyter notebooks
 - **Go**: LSP support, gofmt/goimports, testing, code navigation
 - **Java**: Eclipse JDT LSP, Maven/Gradle integration, debugging (DAP)
 - **C/C++**: LSP (clangd), CMake support, clang-format, modern C++ syntax
@@ -295,7 +295,6 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 
 #### Python (`,`)
 - `, c v` - Activate virtualenv
-- `, c a` - Activate conda env
 - `, t t` - Run pytest
 - `, r b` - Black format
 - `, r i` - Isort imports
