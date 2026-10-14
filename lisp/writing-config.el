@@ -154,7 +154,7 @@
 
 ;; LaTeX support
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :mode ("\\.tex\\'" . latex-mode)
   :config
   (setq TeX-auto-save t
