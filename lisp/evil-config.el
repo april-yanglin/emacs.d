@@ -313,7 +313,17 @@
 
 (use-package treemacs-evil
   :after (treemacs evil)
-  :demand t)
+  :demand t
+  :config
+  ;; treemacs-evil puts the tree in its own `treemacs' evil state, which the
+  ;; SPC leader (normal/visual/insert/emacs) doesn't cover, so SPC there was
+  ;; `evil-forward-char' and "o p" fell through to treemacs.  Share the leader
+  ;; keymap with that state so SPC o p etc. also work inside the tree.
+  (with-eval-after-load 'general
+    (let ((leader (lookup-key (evil-get-auxiliary-keymap general-override-mode-map 'normal)
+                              (kbd "SPC"))))
+      (when (keymapp leader)
+        (evil-define-key* 'treemacs general-override-mode-map (kbd "SPC") leader)))))
 
 (use-package treemacs-projectile
   :after (treemacs projectile)
