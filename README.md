@@ -226,15 +226,16 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 - `SPC s o` - Search outline
 
 #### Project (`SPC p`)
-- `SPC p p` - Switch project
-- `SPC p o` - Open a recent project (most recently used first)
-- `SPC p l` - Recent projects panel
-- `SPC p e` - Toggle project sidebar (file tree + recent projects)
-- `SPC p E` - Reveal current file in the project tree
-- `SPC p f` - Find file in project
-- `SPC p s` - Search in project
-- `SPC p c` - Compile project
-- `SPC p t` - Test project
+`SPC p` opens a hydra menu:
+
+| Project | Search/Build | Tree |
+|---|---|---|
+| `p` switch project | `s` search | `t` toggle sidebar |
+| `o` recent projects (MRU) | `R` replace | `e` reveal file in tree |
+| `f` find file | `c` compile | `l` recent projects panel |
+| `r` recent file | `T` test | `n` treemacs |
+| `b` switch buffer | `I` invalidate cache | `q` quit |
+| `k` kill buffers | | |
 
 #### Git (`SPC g`)
 - `SPC g g` - Magit status
@@ -274,7 +275,7 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 
 ### Project Sidebar
 
-`SPC f t` (or `SPC p e` / `F8`) opens a VS Code style sidebar on the left:
+`SPC f t` (or `SPC p t` / `F8`) opens a VS Code style sidebar on the left:
 
 - **Top:** a treemacs file tree showing only the current buffer's project.
   It follows you as you move between projects.
