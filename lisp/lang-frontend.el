@@ -86,7 +86,7 @@
 
 ;; CSS mode enhancements
 (use-package css-mode
-  :ensure nil
+  :straight nil
   :mode "\\.css\\'"
   :config
   (setq css-indent-offset 2))

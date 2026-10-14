@@ -7,7 +7,7 @@
 
 ;;; Org Mode
 (use-package org
-  :ensure nil
+  :straight nil
   :mode ("\\.org\\'" . org-mode)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
@@ -127,7 +127,7 @@
 
 ;; Flyspell for spell checking
 (use-package flyspell
-  :ensure nil
+  :straight nil
   :hook ((text-mode . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
   :config
@@ -167,7 +167,7 @@
 
 ;; reStructuredText mode
 (use-package rst
-  :ensure nil
+  :straight nil
   :mode ("\\.rst\\'" . rst-mode))
 
 (provide 'writing-config)

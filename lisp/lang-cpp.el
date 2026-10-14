@@ -7,7 +7,7 @@
 
 ;; C/C++ mode configuration
 (use-package cc-mode
-  :ensure nil
+  :straight nil
   :mode (("\\.c\\'" . c-mode)
          ("\\.cpp\\'" . c++-mode)
          ("\\.cc\\'" . c++-mode)
@@ -85,7 +85,7 @@
 
 ;; Makefile support
 (use-package make-mode
-  :ensure nil
+  :straight nil
   :mode (("Makefile\\'" . makefile-mode)
          ("\\.mk\\'" . makefile-mode)))
 

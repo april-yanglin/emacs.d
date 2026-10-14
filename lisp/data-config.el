@@ -42,7 +42,7 @@
 
 ;; SQL mode
 (use-package sql
-  :ensure nil
+  :straight nil
   :mode (("\\.sql\\'" . sql-mode)
          ("\\.ddl\\'" . sql-mode))
   :config
@@ -60,7 +60,7 @@
 
 ;; SQLite support
 (use-package sqlite-mode
-  :ensure nil
+  :straight nil
   :mode "\\.sqlite\\'")
 
 ;; SQL result viewing
@@ -84,7 +84,7 @@
 
 ;; XML mode
 (use-package nxml-mode
-  :ensure nil
+  :straight nil
   :mode (("\\.xml\\'" . nxml-mode)
          ("\\.xsd\\'" . nxml-mode)
          ("\\.xslt\\'" . nxml-mode)
@@ -164,7 +164,7 @@
 
 ;; Binary file viewing with hexl-mode
 (use-package hexl
-  :ensure nil
+  :straight nil
   :commands hexl-mode)
 
 ;; Helper function to view binary data files

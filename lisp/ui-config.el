@@ -81,7 +81,7 @@
 
 ;; Display line numbers in programming modes
 (use-package display-line-numbers
-  :ensure nil
+  :straight nil
   :hook ((prog-mode conf-mode) . display-line-numbers-mode)
   :config
   (setq display-line-numbers-type 'relative))

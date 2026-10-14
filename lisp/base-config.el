@@ -57,7 +57,7 @@
 
 ;; Recentf - remember recent files
 (use-package recentf
-  :ensure nil
+  :straight nil
   :config
   (setq recentf-max-saved-items 500
         recentf-max-menu-items 15

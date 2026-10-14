@@ -6,7 +6,7 @@
 ;;; Code:
 
 (use-package python
-  :ensure nil
+  :straight nil
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :config

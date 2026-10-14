@@ -39,12 +39,12 @@
   (dap-auto-configure-mode))
 
 (use-package dap-java
-  :ensure nil
+  :straight nil
   :after (lsp-java))
 
 ;; Spring Boot support
 (use-package lsp-java-boot
-  :ensure nil
+  :straight nil
   :after lsp-java)
 
 ;; Maven integration
