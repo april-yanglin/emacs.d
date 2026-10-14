@@ -41,7 +41,8 @@
   "sr" '(python-shell-send-region :which-key "send region")
 
   "d" '(:ignore t :which-key "debug")
-  "db" '(python-add-breakpoint :which-key "add breakpoint")
+  "db" '((lambda () (interactive) (end-of-line) (newline-and-indent) (insert "breakpoint()"))
+         :which-key "insert breakpoint()")
 
   "n" '(:ignore t :which-key "notebook")
   "nn" '(ein:notebooklist-open :which-key "open notebook list")
@@ -79,7 +80,7 @@
 
   "x" '(:ignore t :which-key "execute")
   "xr" '(go-run :which-key "run")
-  "xb" '(go-build :which-key "build")
+  "xb" '((lambda () (interactive) (compile "go build ./...")) :which-key "build")
 
   "a" '(:ignore t :which-key "tags")
   "aa" '(go-tag-add :which-key "add tags")
@@ -99,7 +100,7 @@
   "tc" '(dap-java-run-test-class :which-key "test class")
 
   "r" '(:ignore t :which-key "refactor")
-  "rn" '(lsp-java-rename :which-key "rename")
+  "rn" '(lsp-rename :which-key "rename")
   "ro" '(lsp-java-organize-imports :which-key "organize imports")
   "re" '(lsp-java-extract-to-constant :which-key "extract constant")
   "rm" '(lsp-java-extract-method :which-key "extract method")
@@ -207,7 +208,7 @@
   "ee" '(org-export-dispatch :which-key "export")
   "eh" '(org-html-export-to-html :which-key "export to html")
   "em" '(org-md-export-to-markdown :which-key "export to markdown")
-  "ep" '(org-pandoc-export-to-pdf :which-key "export to pdf")
+  "ep" '(org-pandoc-export-to-latex-pdf :which-key "export to pdf")
 
   "i" '(:ignore t :which-key "insert")
   "il" '(org-insert-link :which-key "link")
@@ -255,7 +256,7 @@
   "ii" '(markdown-insert-image :which-key "image")
   "ic" '(markdown-insert-code :which-key "code")
   "ib" '(markdown-insert-bold :which-key "bold")
-  "ii" '(markdown-insert-italic :which-key "italic")
+  "iI" '(markdown-insert-italic :which-key "italic")
 
   "t" '(:ignore t :which-key "table/toc")
   "tt" '(markdown-toc-generate-toc :which-key "generate toc")

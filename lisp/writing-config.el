@@ -7,7 +7,7 @@
 
 ;;; Org Mode
 (use-package org
-  :straight nil
+  :straight nil                         ; built-in, see init.el
   :mode ("\\.org\\'" . org-mode)
   :bind (("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
@@ -52,12 +52,6 @@
 (use-package org-modern
   :hook ((org-mode . org-modern-mode)
          (org-agenda-finalize . org-modern-agenda)))
-
-;; Org bullets for better bullet points
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :config
-  (setq org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
 
 ;; Org roam for note-taking and knowledge management
 (use-package org-roam
@@ -121,15 +115,17 @@
   :after markdown-mode)
 
 ;; Grip mode for live GitHub-flavored Markdown preview
+;; Start it with `, P' in markdown buffers; auto-starting it on every md/org
+;; file launched a server (and errored when grip isn't installed).
 (use-package grip-mode
-  :hook ((markdown-mode . grip-mode)
-         (org-mode . grip-mode))
+  :commands grip-mode
   :config
   (setq grip-preview-use-webkit t))
 
 ;; Flyspell for spell checking
 (use-package flyspell
   :straight nil
+  :if (executable-find "aspell")         ; otherwise errors in every buffer
   :hook ((text-mode . flyspell-mode)
          (prog-mode . flyspell-prog-mode))
   :config

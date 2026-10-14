@@ -31,6 +31,11 @@
 ;; Install use-package via straight
 (straight-use-package 'use-package)
 
+;; Use Emacs' built-in Org, and tell straight so: otherwise packages that
+;; depend on Org (org-roam, org-modern, ...) pull in a second copy from git,
+;; giving a "mixed installation" where opening .org files fails.
+(straight-use-package '(org :type built-in))
+
 ;; Configure use-package
 (setq use-package-always-defer t
       use-package-expand-minimally t
@@ -49,8 +54,8 @@
 (require 'lang-java)
 (require 'lang-cpp)
 (require 'lang-cuda)
-(require 'lang-docker)
 (require 'lang-frontend)
+(require 'lang-docker)              ; after frontend: docker-compose*.yml beats yaml-mode
 (require 'writing-config)
 (require 'data-config)
 

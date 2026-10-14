@@ -25,15 +25,10 @@
   :config
   (setq magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-(use-package git-gutter
-  :diminish git-gutter-mode
-  :hook (prog-mode . git-gutter-mode)
-  :config
-  (setq git-gutter:update-interval 0.5))
-
 (use-package diff-hl
   :hook ((prog-mode . diff-hl-mode)
-         (dired-mode . diff-hl-dired-mode))
+         (dired-mode . diff-hl-dired-mode)
+         (magit-post-refresh . diff-hl-magit-post-refresh))
   :config
   (diff-hl-flydiff-mode))
 
@@ -76,12 +71,15 @@
 
 ;; Treesitter for better syntax highlighting
 (use-package tree-sitter
-  :config
-  (global-tree-sitter-mode)
+  :demand t                             ; nothing else would ever load it
   :hook (tree-sitter-after-on . tree-sitter-hl-mode))
 
 (use-package tree-sitter-langs
-  :after tree-sitter)
+  :demand t
+  :after tree-sitter
+  :config
+  ;; Turn it on only once the grammars are registered.
+  (global-tree-sitter-mode))
 
 ;; Corfu - in-buffer completion UI (pairs with Vertico/Orderless)
 (use-package corfu

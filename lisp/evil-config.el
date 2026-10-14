@@ -189,8 +189,8 @@
     "gf" '(magit-fetch :which-key "fetch")
     "gb" '(magit-branch :which-key "branch")
     "gl" '(magit-log :which-key "log")
-    "gs" '(magit-stage-file :which-key "stage file")
-    "gu" '(magit-unstage-file :which-key "unstage file")
+    "gs" '(magit-stage-files :which-key "stage file")
+    "gu" '(magit-unstage-files :which-key "unstage file")
     "gB" '(magit-blame :which-key "blame")
 
     ;; LSP
@@ -216,7 +216,7 @@
     "cx" '(quickrun :which-key "execute")
     "ce" '(eval-last-sexp :which-key "eval sexp")
     "cE" '(eval-buffer :which-key "eval buffer")
-    "cr" '(evilnc-comment-or-uncomment-lines :which-key "comment")
+    "cr" '(comment-line :which-key "comment")
 
     ;; Errors/Diagnostics
     "e" '(:ignore t :which-key "errors")

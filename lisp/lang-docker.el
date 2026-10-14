@@ -21,27 +21,6 @@
   :config
   (setq docker-command "docker"))
 
-;; Docker tramp for editing files in containers
-(use-package docker-tramp
-  :after tramp)
-
-;; Flycheck for Dockerfile
-(with-eval-after-load 'flycheck
-  (when (executable-find "hadolint")
-    (flycheck-define-checker dockerfile-hadolint
-      "A Dockerfile syntax checker using hadolint."
-      :command ("hadolint" "-")
-      :standard-input t
-      :error-patterns
-      ((error line-start
-              (file-name) ":" line ":" column " " (message)
-              line-end)
-       (warning line-start
-                (file-name) ":" line ":" column " " (one-or-more not-newline) "DL" (message)
-                line-end))
-      :modes dockerfile-mode)
-    (add-to-list 'flycheck-checkers 'dockerfile-hadolint)))
-
 ;; LSP support for Dockerfile
 (add-hook 'dockerfile-mode-hook #'lsp-deferred)
 
@@ -63,6 +42,11 @@
   "Run docker-compose down in current directory."
   (interactive)
   (compile "docker-compose down"))
+
+(defun docker-compose-restart ()
+  "Run docker-compose restart in current directory."
+  (interactive)
+  (compile "docker-compose restart"))
 
 (with-eval-after-load 'dockerfile-mode
   (define-key dockerfile-mode-map (kbd "C-c C-b") 'docker-build-current-file))

@@ -16,9 +16,6 @@
 (use-package go-eldoc
   :hook (go-mode . go-eldoc-setup))
 
-(use-package go-guru
-  :hook (go-mode . go-guru-hl-identifier-mode))
-
 (use-package go-tag
   :bind (:map go-mode-map
               ("C-c t a" . go-tag-add)
@@ -30,10 +27,6 @@
               ("C-c t t" . go-test-current-test)
               ("C-c t f" . go-test-current-file)
               ("C-c t p" . go-test-current-project)))
-
-;; Go snippets
-(use-package go-snippets
-  :after yasnippet)
 
 ;; Go implementation jumper
 (use-package go-impl

@@ -15,7 +15,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 
 ### Writing
 - **Org Mode**: Advanced configuration with org-roam, org-babel, presentations, export backends
-- **Markdown**: GitHub-flavored markdown, live preview (grip), TOC generation
+- **Markdown**: GitHub-flavored markdown, live preview (grip, `, P`), TOC generation
 
 ### Data Formats
 - **CSV/TSV**: Advanced CSV editing with alignment and sorting
@@ -28,7 +28,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 - **Evil Mode**: Vim emulation with space as leader key and comma as local leader
 - Modern UI with doom-themes and doom-modeline
 - LSP integration for intelligent code completion
-- Git integration (magit, git-gutter, diff-hl)
+- Git integration (magit, diff-hl)
 - Project management (projectile)
 - Smart completion (corfu, cape, vertico, orderless)
 - Syntax checking (flycheck)
@@ -36,7 +36,7 @@ A comprehensive Emacs configuration for modern software development and writing.
 - Tree-sitter for better syntax highlighting
 - Project sidebar: file tree (treemacs) + recent projects panel
 - Terminal emulation (vterm)
-- Spell checking (flyspell)
+- Spell checking (flyspell; enabled when `aspell` is installed)
 
 ## Installation
 

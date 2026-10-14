@@ -61,7 +61,6 @@
                           (agenda . 5))
         dashboard-set-heading-icons t
         dashboard-set-file-icons t
-        dashboard-set-navigator t
         dashboard-set-init-info t)
   (dashboard-setup-startup-hook))
 

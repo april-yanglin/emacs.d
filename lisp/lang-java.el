@@ -10,13 +10,12 @@
   :hook ((java-mode . lsp-deferred)
          (java-mode . lsp-java-boot-lens-mode))
   :config
-  (setq lsp-java-vmargs
-        (list "-noverify"
-              "-Xmx2G"
-              "-XX:+UseG1GC"
-              "-XX:+UseStringDeduplication"
-              (concat "-javaagent:" (expand-file-name "~/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar")))
-        lsp-java-java-path "java"
+  (let ((lombok (expand-file-name "~/.m2/repository/org/projectlombok/lombok/1.18.30/lombok-1.18.30.jar")))
+    (setq lsp-java-vmargs
+          (append '("-Xmx2G" "-XX:+UseG1GC" "-XX:+UseStringDeduplication")
+                  ;; Only if present: a missing -javaagent jar stops jdtls from starting.
+                  (when (file-exists-p lombok) (list (concat "-javaagent:" lombok))))))
+  (setq lsp-java-java-path "java"
         lsp-java-format-enabled t
         lsp-java-save-actions-organize-imports t
         lsp-java-completion-favorite-static-members

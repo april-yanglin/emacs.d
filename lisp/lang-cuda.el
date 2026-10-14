@@ -10,10 +10,11 @@
   :mode (("\\.cu\\'" . cuda-mode)
          ("\\.cuh\\'" . cuda-mode))
   :config
-  (setq cuda-mode-hook
-        (lambda ()
-          (setq c-basic-offset 4)
-          (setq indent-tabs-mode nil))))
+  ;; add-hook, not setq: setq replaced the hook and dropped lsp-deferred.
+  (add-hook 'cuda-mode-hook
+            (lambda ()
+              (setq c-basic-offset 4
+                    indent-tabs-mode nil))))
 
 ;; Add LSP support for CUDA files (uses clangd with CUDA support)
 (add-hook 'cuda-mode-hook #'lsp-deferred)

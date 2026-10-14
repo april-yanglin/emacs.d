@@ -49,13 +49,13 @@
   :config
   (setq typescript-indent-level 2))
 
-;; TSX support: .tsx files open in web-mode (above); start LSP for them.
+;; JSX/TSX: start LSP for .jsx/.tsx files that open in web-mode.
 ;; (There is no `tsx-mode' package on MELPA, so straight can't install one.)
-(defun my/tsx-lsp ()
-  "Start LSP in web-mode buffers visiting .tsx files."
-  (when (and buffer-file-name (string-match-p "\\.tsx\\'" buffer-file-name))
+(defun my/jsx-lsp ()
+  "Start LSP in web-mode buffers visiting .jsx/.tsx files."
+  (when (and buffer-file-name (string-match-p "\\.[jt]sx\\'" buffer-file-name))
     (lsp-deferred)))
-(add-hook 'web-mode-hook #'my/tsx-lsp)
+(add-hook 'web-mode-hook #'my/jsx-lsp)
 
 ;; JSON mode
 (use-package json-mode

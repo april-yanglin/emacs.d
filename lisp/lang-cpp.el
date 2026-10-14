@@ -57,11 +57,6 @@
             (when (locate-dominating-file "." ".clang-format")
               (add-hook 'before-save-hook 'clang-format-buffer nil 'local))))
 
-;; Google C++ Style
-(use-package google-c-style
-  :hook ((c-mode . google-set-c-style)
-         (c++-mode . google-set-c-style)))
-
 ;; Irony mode (alternative C++ completion, uncomment if not using LSP)
 ;; (use-package irony
 ;;   :hook ((c-mode . irony-mode)
