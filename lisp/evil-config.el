@@ -125,6 +125,8 @@
     "fS" '(write-file :which-key "save as")
     "fd" '(delete-file :which-key "delete file")
     "fD" '(dired :which-key "dired")
+    "ft" '(my/project-sidebar-toggle :which-key "project sidebar")
+    "fT" '(my/project-sidebar-reveal-file :which-key "reveal file in tree")
     "fy" '((lambda () (interactive) (kill-new (buffer-file-name))) :which-key "yank path")
 
     ;; Buffers
@@ -251,8 +253,7 @@
     "ot" '(vterm :which-key "terminal")
     "oe" '(eshell :which-key "eshell")
     "od" '(dired :which-key "dired")
-    "op" '(my/project-sidebar-toggle :which-key "project sidebar")
-    "oP" '(treemacs :which-key "treemacs")
+    "op" '(treemacs :which-key "treemacs")
 
     ;; Insert
     "i" '(:ignore t :which-key "insert")

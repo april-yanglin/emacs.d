@@ -199,6 +199,8 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 
 #### Files (`SPC f`)
 - `SPC f f` - Find file
+- `SPC f t` - Toggle project sidebar (file tree + recent projects)
+- `SPC f T` - Reveal current file in the project tree
 - `SPC f r` - Recent files
 - `SPC f s` - Save file
 - `SPC f d` - Delete file
@@ -268,12 +270,11 @@ Press `SPC` and wait to see available keybindings (powered by which-key).
 - `SPC o t` - Terminal (vterm)
 - `SPC o e` - Eshell
 - `SPC o d` - Dired
-- `SPC o p` / `F8` - Project sidebar (file tree + recent projects)
-- `SPC o P` - Treemacs (plain)
+- `SPC o p` - Treemacs
 
 ### Project Sidebar
 
-`SPC o p` (or `F8`) opens a VS Code style sidebar on the left:
+`SPC f t` (or `SPC p e` / `F8`) opens a VS Code style sidebar on the left:
 
 - **Top:** a treemacs file tree showing only the current buffer's project.
   It follows you as you move between projects.
